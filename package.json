@@ -1,0 +1,14 @@
+{
+
+  "name" : "nodejs",
+    
+
+  "dependencies": {
+    "bp": "^0.1.1-beta",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19",
+    "puppeteer": "^15.4.0",
+    "request": "^2.88.2"
+  }
+}
