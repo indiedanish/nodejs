@@ -109,5 +109,5 @@ app.post("/", jsonParser, async (req, res) => {
 var PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
-  console.log("server running at 4000");
+  console.log("server running at", PORT);
 });
