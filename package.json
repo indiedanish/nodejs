@@ -3,7 +3,7 @@
   "name" : "nodejs",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon node.js"
   },
 
   "dependencies": {
