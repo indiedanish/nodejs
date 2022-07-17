@@ -5,7 +5,12 @@ var express = require("express");
 var router = express.Router();
 const puppeteer = require("puppeteer");
 
-/* GET home page. */
+
+
+router.get("/",  function (req, res, next) {
+  res.send("respond with a resource");
+});
+
 router.post("/", jsonParser, async function (req, res, next) {
   try {
     // 200 status code means OK
