@@ -1,15 +1,15 @@
 {
-
-  "name" : "nodejs",
+  "name": "nodejs",
   "private": true,
   "scripts": {
     "start": "nodemon node.js"
   },
-
   "dependencies": {
     "bp": "^0.1.1-beta",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "puppeteer": "^15.4.0",
     "request": "^2.88.2"
