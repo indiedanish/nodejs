@@ -1,27 +1,12 @@
-var fs = require("fs"),
-  request = require("request");
-
-const puppeteer = require("puppeteer");
-const express = require("express");
-var indexRouter = require('./routes/index');
-var cors = require("cors"); //use this
-var app = express();
-
-
-
-app.use(cors()); //and this
-
-
-app.use('/', indexRouter);
 var bodyParser = require("body-parser");
-
-// create application/json parser
 var jsonParser = bodyParser.json();
+var express = require("express");
 
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var router = express.Router();
+const puppeteer = require("puppeteer");
 
-app.post("/", jsonParser, async (req, res) => {
+/* GET home page. */
+router.post("/", jsonParser, async function (req, res, next) {
   try {
     // 200 status code means OK
     console.log("HELLO");
@@ -110,9 +95,5 @@ app.post("/", jsonParser, async (req, res) => {
   // }
 });
 
-var PORT = process.env.PORT || 5000;
 
-
-app.listen(PORT, () => {
-  console.log("server running at", PORT);
-});
+module.exports = router;
