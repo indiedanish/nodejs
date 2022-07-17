@@ -5,10 +5,8 @@ var express = require("express");
 var router = express.Router();
 const puppeteer = require("puppeteer");
 
-
-
-router.get("/",  function (req, res, next) {
-  res.send("respond with a resource");
+router.get("/", function (req, res, next) {
+  res.send("Image downloading . . . . .");
 });
 
 router.post("/", jsonParser, async function (req, res, next) {
@@ -56,7 +54,7 @@ router.post("/", jsonParser, async function (req, res, next) {
         res.json(array);
 
         return array;
-      } else {
+      } else if (url.includes("ebay")) {
         const getDataFromEbay = await page.evaluate(() => {
           console.log("START");
           const image = document
@@ -79,26 +77,30 @@ router.post("/", jsonParser, async function (req, res, next) {
 
           return array;
         });
-        browser.close();
 
+        browser.close();
         console.log(getDataFromEbay);
         res.json(getDataFromEbay);
-
         return getDataFromEbay;
-      }
+      } else res.send("NOT FROM EBAY OR AMAZON");
     }
 
-    await scrapeProduct(link);
+    console.log(link.includes("ebay"));
+    if (link.includes("ebay") == true) {
+      console.log("IM HERE");
+      await scrapeProduct(link)
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((err) => res.send("ERROR"));
+    } else {
+      res.send("ERROR");
+    }
   } catch (e) {
     console.log(e);
+    next(e);
     res.status(500).send("Something broke!");
   }
-  // for (var i = 0; i < data.length; i++) {
-  //   download(data[i].replace("s-l64", "s-l1600"), `${i}.jpg`, function () {
-  //     console.log("done");
-  //   });
-  // }
 });
-
 
 module.exports = router;
