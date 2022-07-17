@@ -26,11 +26,11 @@ app.post("/", jsonParser, async (req, res) => {
 
     const link = req.body.link;
     async function scrapeProduct(url) {
-    // const browser = await puppeteer.launch();
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox"]
-    });
+      // const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        headless: true,
+        args: ["--no-sandbox"],
+      });
       const page = await browser.newPage();
       await page.goto(url, { waitUntil: "domcontentloaded" });
 
@@ -106,7 +106,8 @@ app.post("/", jsonParser, async (req, res) => {
   // }
 });
 
-var PORT = process.env.PORT || 5000
+var PORT = process.env.PORT || 5000;
+
 
 app.listen(PORT, () => {
   console.log("server running at", PORT);
