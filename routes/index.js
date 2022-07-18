@@ -26,6 +26,8 @@ router.post("/", jsonParser, async function (req, res, next) {
       const page = await browser.newPage();
       await page.goto(url, { waitUntil: "domcontentloaded" });
 
+      console.log("this is URL: ", url);
+
       if (url.includes("amazon")) {
         var getDataFromAmazon = await page.evaluate(() => {
           var result = document
@@ -53,7 +55,7 @@ router.post("/", jsonParser, async function (req, res, next) {
         console.log(array);
         res.json(array);
 
-        return array;
+        // return array;
       } else if (url.includes("ebay")) {
         const getDataFromEbay = await page.evaluate(() => {
           console.log("START");
@@ -86,7 +88,7 @@ router.post("/", jsonParser, async function (req, res, next) {
     }
 
     console.log(link.includes("ebay"));
-    if (link.includes("ebay") == true) {
+    if (link.includes("ebay") || link.includes("amazon")) {
       console.log("IM HERE");
       await scrapeProduct(link)
         .then((data) => {
