@@ -81,7 +81,7 @@ router.post("/", jsonParser, async function (req, res, next) {
         browser.close();
         console.log(getDataFromEbay);
         res.json(getDataFromEbay);
-        return getDataFromEbay;
+        // return getDataFromEbay;
       } else res.send("NOT FROM EBAY OR AMAZON");
     }
 
